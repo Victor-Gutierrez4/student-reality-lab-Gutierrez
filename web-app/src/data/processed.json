@@ -1,0 +1,10 @@
+[
+  { "year": 2016, "nominal_wage": 12.5, "cpi": 240, "real_wage": 5.2083 },
+  { "year": 2017, "nominal_wage": 12.8, "cpi": 245, "real_wage": 5.2245 },
+  { "year": 2018, "nominal_wage": 13.1, "cpi": 251, "real_wage": 5.2171 },
+  { "year": 2019, "nominal_wage": 13.5, "cpi": 256, "real_wage": 5.2734 },
+  { "year": 2020, "nominal_wage": 13.8, "cpi": 260, "real_wage": 5.3077 },
+  { "year": 2021, "nominal_wage": 14.0, "cpi": 268, "real_wage": 5.2239 },
+  { "year": 2022, "nominal_wage": 14.5, "cpi": 280, "real_wage": 5.1786 },
+  { "year": 2023, "nominal_wage": 15.0, "cpi": 292, "real_wage": 5.1369 }
+]
