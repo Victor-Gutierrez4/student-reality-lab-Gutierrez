@@ -23,20 +23,30 @@ interface WageRecord {
 // cast imported JSON to a typed array
 const data: WageRecord[] = rawData as WageRecord[];
 
-// ensure this file is treated as a module under isolatedModules
-export {};
-
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const WageChart = () => {
-  const [yearEnd, setYearEnd] = useState(2023);
+  // default to latest year in data (2022)
+  const [yearEnd, setYearEnd] = useState(2022);
+
+  // filter data up to selected year
   const filteredData = data.filter((d) => d.year <= yearEnd);
 
   const chartData = {
     labels: filteredData.map((d) => d.year),
     datasets: [
-      { label: 'Nominal Wage', data: filteredData.map((d) => d.nominal_wage), borderColor: 'blue', fill: false },
-      { label: 'Real Wage', data: filteredData.map((d) => d.real_wage), borderColor: 'green', fill: false }
+      { 
+        label: 'Nominal Wage', 
+        data: filteredData.map((d) => d.nominal_wage), 
+        borderColor: 'blue', 
+        fill: false 
+      },
+      { 
+        label: 'Real Wage', 
+        data: filteredData.map((d) => d.real_wage), 
+        borderColor: 'green', 
+        fill: false 
+      }
     ]
   };
 
@@ -48,14 +58,16 @@ const WageChart = () => {
         <label>End Year: {yearEnd}</label>
         <input
           type="range"
-          min={2016}
-          max={2023}
+          min={2013}
+          max={2022}
           value={yearEnd}
           onChange={(e) => setYearEnd(parseInt(e.target.value))}
           style={{ width: '100%' }}
         />
       </div>
-      <p>Notice: Real wage (green) stays mostly flat, while nominal wage (blue) increases. Inflation erodes gains.</p>
+      <p>
+        Notice: Real wage (green) stays mostly flat, while nominal wage (blue) increases. Inflation erodes gains.
+      </p>
     </div>
   );
 };
