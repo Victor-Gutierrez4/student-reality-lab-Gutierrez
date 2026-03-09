@@ -1,4 +1,4 @@
-import { loadData } from './lib/loadData';
+import { loadData } from './lib/loadData.js';
 
 (async () => {
   const data = await loadData();

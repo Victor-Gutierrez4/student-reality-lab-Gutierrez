@@ -1,7 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import csv from 'csv-parser';
-import { WageRecord } from './schema';
+import { WageRecord } from './schema.js';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // Load raw CSV and calculate real wages
 export const loadData = async (): Promise<WageRecord[]> => {
