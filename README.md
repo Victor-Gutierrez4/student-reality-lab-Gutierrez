@@ -1,67 +1,111 @@
-# student-reality-lab-Gutierrez
-README.md — Starter Draft
+# Are Student Wages Keeping Up with Inflation?
 
-Title:
-Are Student Wages Keeping Up with Inflation?
+## Essential Question
 
-Essential Question:
 Are part-time student wages keeping pace with inflation over the past 10 years?
 
-Claim (Hypothesis):
+## Claim (Hypothesis)
+
 Nominal student wages have increased slightly, but real wages adjusted for inflation have stagnated.
 
-Audience:
+## Audience
+
 Current and prospective students, part-time workers, and university administrators.
 
-STAR Draft:
+---
 
-S — Situation: Students often rely on part-time jobs to cover tuition and living costs. Inflation reduces purchasing power, making it harder to afford essentials.
+# STAR Framework
 
-T — Task: Determine whether wages have kept up with inflation over time. Viewers should be able to see trends in real vs nominal wages.
+### Situation
 
-A — Action: Build 1–4 interactive charts showing nominal vs real wages, including filters for year and region.
+Students often rely on part-time jobs to cover tuition and living costs. Inflation reduces purchasing power, making it harder to afford essentials.
 
-R — Result: Expect to show that real wages have been mostly flat despite nominal increases. Key metric: wage growth vs inflation rate.
+### Task
 
-Dataset & Provenance:
+Determine whether wages have kept up with inflation over time. Viewers should be able to see trends in real vs nominal wages.
 
-Wages: U.S. Bureau of Labor Statistics (BLS) – “Student/part-time wages by year” (https://www.bls.gov/
-)
+### Action
 
-Inflation: U.S. Bureau of Labor Statistics CPI (https://www.bls.gov/cpi/
-)
+Build interactive charts showing nominal vs real wages, including filters for year.
 
-Retrieval date: March 9, 2026
+### Result
 
-License: Public government data
+The visualization shows that real wages remain mostly flat despite nominal increases.
+Key metric: wage growth compared with inflation rate.
 
-Data Dictionary (example):
+---
 
-Column	Meaning	Units
-year	Calendar year	YYYY
-nominal_wage	Average student wage	USD/hour
-cpi	Consumer Price Index	Index (1982–1984=100)
-real_wage	Nominal wage adjusted for inflation	USD/hour
-region	U.S. region (optional)	String
+# Dataset & Provenance
 
-Data Viability Audit:
+**Wages:**
+U.S. Bureau of Labor Statistics (BLS) – Student / part-time wage data
+https://www.bls.gov/
 
-Missing values → fill using linear interpolation or remove years with incomplete data
+**Inflation:**
+U.S. Bureau of Labor Statistics Consumer Price Index (CPI)
+https://www.bls.gov/cpi/
 
-Cleaning plan → merge wage + CPI, calculate real wages
+**Retrieval Date:**
+March 9, 2026
 
-Dataset limits → Only U.S. data; may not represent all student demographics
+**License:**
+Public U.S. government data
 
-Draft Chart Screenshot:
+---
 
-Line chart: Year vs Real Wage vs Nominal Wage
+# Data Dictionary
 
-Why it answers the question:
+| Column       | Meaning                             | Units                   |
+| ------------ | ----------------------------------- | ----------------------- |
+| year         | Calendar year                       | YYYY                    |
+| nominal_wage | Average student wage                | USD/hour                |
+| cpi          | Consumer Price Index                | Index (1982–1984 = 100) |
+| real_wage    | Nominal wage adjusted for inflation | USD/hour                |
+| region       | U.S. region (optional)              | String                  |
 
-Shows trend comparison over time
+---
 
-Makes gap between nominal and real wages immediately visible
+# Data Viability Audit
 
-/data/notes.md:
+**Missing Values**
+Missing values will be filled using linear interpolation or removed if incomplete.
 
-Sources, retrieval notes, CPI adjustments, caveats
+**Cleaning Plan**
+Merge wage data with CPI data and calculate real wages.
+
+**Dataset Limits**
+Data only represents U.S. averages and may not reflect all student demographics.
+
+---
+
+# Draft Visualization
+
+Line chart comparing:
+
+* Nominal wages
+* Real wages (inflation-adjusted)
+
+This visualization answers the question by showing the trend comparison over time and highlighting the gap between nominal and real wages.
+
+---
+
+# Project Structure
+
+```
+web-app/
+src/
+components/
+WageChart.tsx
+data/
+processed.json
+```
+
+---
+
+# Notes
+
+See `/data/notes.md` for:
+
+* Source retrieval notes
+* CPI adjustment calculations
+* Data caveats
