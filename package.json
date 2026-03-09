@@ -2,7 +2,10 @@
   "name": "student-reality-lab",
   "version": "1.0.0",
   "type": "module",
+  "homepage": "https://Victor-Gutierrez4.github.io/student-reality-lab-Gutierrez",
   "scripts": {
+    "predeploy": "npm run build",
+ "deploy": "gh-pages -d build",
     "start": "npm run build && node dist/main.js",
     "build": "tsc"
   },
