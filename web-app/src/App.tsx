@@ -1,5 +1,6 @@
 import React from 'react';
 import WageChart from './components/WageChart';
+import Chat from './components/Chat';
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
 
   <div style={{ margin: "40px 0" }}>
     <WageChart />
+  </div>
+
+  <div style={{ margin: "24px 0" }}>
+    <Chat />
   </div>
 
   <h3>Claim</h3>
