@@ -1,38 +1,224 @@
-.App {
-  text-align: center;
+.story-shell {
+  color: #172033;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 1040px;
+  padding: 40px 20px 64px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.hero {
+  border-bottom: 1px solid #d8dee8;
+  padding: 32px 0 28px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.section-kicker {
+  color: #0f766e;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 4rem);
+  line-height: 1.05;
+  margin: 10px 0 18px;
+  max-width: 820px;
+}
+
+.hero p {
+  color: #4b5563;
+  font-size: 1.12rem;
+  max-width: 760px;
+}
+
+.claim-strip {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 28px 0;
+}
+
+.claim-strip > div,
+.chart-panel,
+.chat-panel,
+.story-text {
+  background: #ffffff;
+  border: 1px solid #d8dee8;
+  border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(23, 32, 51, 0.07);
+}
+
+.claim-strip > div {
+  padding: 18px;
+}
+
+.claim-strip span {
+  color: #6b7280;
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.claim-strip p {
+  font-weight: 700;
+  margin: 0;
+}
+
+.chart-panel,
+.chat-panel,
+.story-text {
+  margin-top: 24px;
+  padding: 24px;
+}
+
+.chart-panel h2,
+.chat-panel h2,
+.story-text h2 {
+  font-size: 1.45rem;
+  margin: 4px 0 8px;
+}
+
+.chart-panel p,
+.chat-intro,
+.story-text p {
+  color: #4b5563;
+  margin-top: 0;
+}
+
+.chart-frame {
+  height: 420px;
+  margin: 22px 0;
+}
+
+.slider-control {
+  display: grid;
+  gap: 8px;
+}
+
+.slider-control label {
+  font-weight: 700;
+}
+
+.slider-control input {
+  accent-color: #0f766e;
+  width: 100%;
+}
+
+.data-callout {
+  align-items: start;
+  background: #f0fdfa;
+  border-left: 4px solid #0f766e;
+  display: grid;
+  gap: 4px;
+  margin-top: 18px;
+  padding: 14px 16px;
+}
+
+.chat-log {
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  max-height: 280px;
+  min-height: 150px;
+  overflow: auto;
+  padding: 14px;
+}
+
+.chat-message {
+  display: grid;
+  gap: 2px;
+  max-width: 780px;
+}
+
+.chat-message strong {
+  font-size: 0.82rem;
+}
+
+.chat-message.user {
+  justify-self: end;
+  text-align: right;
+}
+
+.chat-message.user span {
+  background: #dbeafe;
+}
+
+.chat-message.assistant span {
+  background: #ffffff;
+}
+
+.chat-message span {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  display: inline-block;
+  padding: 8px 10px;
+}
+
+.suggestions {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0;
 }
 
-.App-link {
-  color: #61dafb;
+.suggestions button,
+.chat-input-row button {
+  background: #172033;
+  border: 0;
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
+  padding: 10px 12px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.suggestions button {
+  background: #eef2ff;
+  color: #1e3a8a;
+}
+
+.chat-input-row {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr auto;
+}
+
+.chat-input-row input {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+  min-width: 0;
+  padding: 10px 12px;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #f59e0b;
+  outline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .story-shell {
+    padding-top: 20px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .claim-strip,
+  .chat-input-row {
+    grid-template-columns: 1fr;
+  }
+
+  .chart-frame {
+    height: 340px;
+  }
+
+  .chart-panel,
+  .chat-panel,
+  .story-text {
+    padding: 18px;
   }
 }

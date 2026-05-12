@@ -1,52 +1,57 @@
 import React from 'react';
 import WageChart from './components/WageChart';
 import Chat from './components/Chat';
+import './App.css';
 
 function App() {
   return (
-    <div
-  style={{
-    maxWidth: "900px",
-    margin: "40px auto",
-    fontFamily: "Arial, sans-serif",
-    lineHeight: "1.6",
-    padding: "20px"
-  }}
->
+    <main className="story-shell">
+      <section className="hero">
+        <div className="section-kicker">Student Reality Lab</div>
+        <h1>Are Student Wages Keeping Up With Inflation?</h1>
+        <p>
+          Many students work part-time jobs while in school. This data story
+          tests whether wage growth has actually improved purchasing power once
+          inflation is included.
+        </p>
+      </section>
 
-  <h1 style={{ textAlign: "center" }}>
-    Are Student Wages Keeping Up With Inflation?
-  </h1>
+      <section className="claim-strip" aria-label="Claim and takeaway">
+        <div>
+          <span>Claim</span>
+          <p>
+            Student wages increased in dollars, but inflation kept real wage
+            gains small.
+          </p>
+        </div>
+        <div>
+          <span>Takeaway</span>
+          <p>
+            Students should compare pay raises with inflation before assuming
+            they can afford more.
+          </p>
+        </div>
+      </section>
 
-  <p style={{ textAlign: "center", color: "#555" }}>
-    Many students work part-time jobs while in school. This project explores
-    whether wage growth has kept up with inflation over time and how rising
-    prices may affect student purchasing power.
-  </p>
+      <WageChart />
+      <Chat />
 
-  <div style={{ margin: "40px 0" }}>
-    <WageChart />
-  </div>
-
-  <div style={{ margin: "24px 0" }}>
-    <Chat />
-  </div>
-
-  <h3>Claim</h3>
-  <p>
-    Wage growth for students has increased slightly over time, but inflation
-    has often risen at a similar or faster rate, meaning the real value of
-    wages has not improved significantly.
-  </p>
-
-  <h3>Takeaway</h3>
-  <p>
-    Even when wages increase, inflation can reduce real purchasing power.
-    This makes it harder for students to keep up with living costs while
-    attending school.
-  </p>
-
-</div>
+      <section className="story-text" aria-labelledby="notice-heading">
+        <h2 id="notice-heading">What to notice</h2>
+        <p>
+          The blue line shows the hourly wage students would see on a paycheck.
+          That number rises from 2013 to 2022, which can make the labor market
+          look healthier at first glance. The green line adjusts those wages for
+          inflation, showing what the pay is worth after prices rise. The
+          important pattern is the gap between the two lines: nominal pay moves
+          upward, but real pay changes much more slowly. Use the slider to stop
+          at an earlier year and see how the conclusion develops over time. The
+          data does not prove every student has the same experience, but it does
+          show why a higher hourly wage is not automatically a better financial
+          reality.
+        </p>
+      </section>
+    </main>
   );
 }
 

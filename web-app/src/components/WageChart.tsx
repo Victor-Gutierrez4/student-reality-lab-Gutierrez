@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import rawData from '../data/processed.json';
 import {
@@ -12,7 +12,6 @@ import {
   Legend,
 } from 'chart.js';
 
-// type for each record in the JSON file
 interface WageRecord {
   year: number;
   nominal_wage: number;
@@ -20,55 +19,115 @@ interface WageRecord {
   real_wage: number;
 }
 
-// cast imported JSON to a typed array
 const data: WageRecord[] = rawData as WageRecord[];
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const WageChart = () => {
-  // default to latest year in data (2022)
-  const [yearEnd, setYearEnd] = useState(2022);
+  const firstYear = data[0].year;
+  const finalYear = data[data.length - 1].year;
+  const [yearEnd, setYearEnd] = useState(finalYear);
 
-  // filter data up to selected year
   const filteredData = data.filter((d) => d.year <= yearEnd);
+  const firstRecord = filteredData[0];
+  const currentRecord = filteredData[filteredData.length - 1];
+  const realChange = currentRecord.real_wage - firstRecord.real_wage;
+  const nominalChange = currentRecord.nominal_wage - firstRecord.nominal_wage;
 
-  const chartData = {
-    labels: filteredData.map((d) => d.year),
-    datasets: [
-      { 
-        label: 'Nominal Wage', 
-        data: filteredData.map((d) => d.nominal_wage), 
-        borderColor: 'blue', 
-        fill: false 
+  const chartData = useMemo(
+    () => ({
+      labels: filteredData.map((d) => d.year),
+      datasets: [
+        {
+          label: 'Nominal wage',
+          data: filteredData.map((d) => d.nominal_wage),
+          borderColor: '#2563eb',
+          backgroundColor: '#2563eb',
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          tension: 0.3,
+        },
+        {
+          label: 'Real wage (inflation-adjusted)',
+          data: filteredData.map((d) => d.real_wage),
+          borderColor: '#0f766e',
+          backgroundColor: '#0f766e',
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          tension: 0.3,
+        },
+      ],
+    }),
+    [filteredData]
+  );
+
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom' as const,
       },
-      { 
-        label: 'Real Wage', 
-        data: filteredData.map((d) => d.real_wage), 
-        borderColor: 'green', 
-        fill: false 
-      }
-    ]
+      tooltip: {
+        callbacks: {
+          label: (context: any) => `${context.dataset.label}: $${context.parsed.y.toFixed(2)}/hour`,
+        },
+      },
+    },
+    scales: {
+      x: {
+        title: {
+          display: true,
+          text: 'Year',
+        },
+      },
+      y: {
+        title: {
+          display: true,
+          text: 'Hourly wage in dollars',
+        },
+        ticks: {
+          callback: (value: string | number) => `$${value}`,
+        },
+      },
+    },
   };
 
   return (
-    <div style={{ width: '80%', margin: '0 auto' }}>
-      <h2>Student Wages vs Inflation</h2>
-      <Line data={chartData} />
-      <div style={{ marginTop: '20px' }}>
-        <label>End Year: {yearEnd}</label>
+    <section className="chart-panel" aria-labelledby="chart-heading">
+      <div className="section-kicker">View 1</div>
+      <h2 id="chart-heading">Student wages vs. inflation</h2>
+      <p>
+        Use the slider to stop the story at any year and compare the face-value
+        wage with the inflation-adjusted wage.
+      </p>
+
+      <div className="chart-frame">
+        <Line data={chartData} options={chartOptions} />
+      </div>
+
+      <div className="slider-control">
+        <label htmlFor="year-end">
+          End year: <strong>{yearEnd}</strong>
+        </label>
         <input
+          id="year-end"
           type="range"
-          min={2013}
-          max={2022}
+          min={firstYear}
+          max={finalYear}
           value={yearEnd}
           onChange={(e) => setYearEnd(parseInt(e.target.value))}
-          style={{ width: '100%' }}
         />
       </div>
-      <p>
-        Notice: Real wage (green) stays mostly flat, while nominal wage (blue) increases. Inflation erodes gains.
-      </p>
-    </div>
+
+      <aside className="data-callout" aria-label="Chart annotation">
+        <strong>Annotation: {firstYear} to {yearEnd}</strong>
+        <span>
+          Nominal wages are up ${nominalChange.toFixed(2)}/hour, but real wages
+          are up only ${realChange.toFixed(2)}/hour after inflation.
+        </span>
+      </aside>
+    </section>
   );
 };
 
